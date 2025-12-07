@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxionics - Versiones Anteriores</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos generales del portafolio */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        /* Estilo para el Canvas (fondo de partículas) */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Contenido debe estar encima del canvas */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="content-wrapper min-h-screen flex flex-col">
+        
+        <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <span class="font-mono text-xl font-bold text-cyan-400 tracking-tighter hover:text-white transition-colors cursor-pointer">
+                        &lt;GRSM /&gt;
+                    </span>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="fluxionics.github.io" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Inicio</a>
+                            <a href="https://fluxionics.github.io/proyectos.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Proyectos</a>
+                            <a href="https://fluxionics.github.io/contacto.html" class="hover:bg-cyan-500 hover:text-black border border-cyan-500 text-cyan-400 px-4 py-2 rounded-md text-sm font-medium transition-all">Contactar</a>
+                            <a href="asistente.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Asistente</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="versiones-lista" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex-grow">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold tracking-tight text-white mb-8 border-b border-cyan-500/30 pb-2 text-center">
+                    Historial de Versiones del Asistente 💾
+                </h2>
+                
+                <div id="versions-container" class="space-y-6">
+                    <p class="text-slate-400 text-center">Cargando historial de versiones...</p> 
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-auto border-t border-slate-800 bg-black/80 backdrop-blur-md py-8">
+            <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center opacity-60">
+                <div class="font-mono text-sm text-slate-500 mb-4 md:mb-0">
+                    © 2024 Guillermo Rafael S.M.
+                </div>
+                <div class="flex space-x-6 items-center">
+                    <span class="text-slate-600 text-sm">Powered by</span>
+                    <span class="font-bold tracking-widest text-cyan-900 hover:text-cyan-700 transition-colors">FLUXIONICS</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let animationFrameId;
+
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const particleCount = 60;
+            const particles = [];
+
+            class Particle {
+                // ... (código de Particle, update, draw, connectParticles y animate) ...
+                constructor() { this.reset(); }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * -1 - 0.2;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                    this.color = Math.random() > 0.5 ? '103, 232, 249' : '59, 130, 246';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.y < 0) {
+                        this.y = canvas.height;
+                        this.x = Math.random() * canvas.width;
+                    }
+                    if (this.x > canvas.width || this.x < 0) {
+                        this.speedX = -this.speedX;
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            const connectParticles = () => {
+                const maxDistance = 100;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < maxDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(103, 232, 249, ${0.1 - distance/maxDistance * 0.1})`;
+                            ctx.lineWidth = 1;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            };
+            const animate = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                connectParticles();
+                animationFrameId = requestAnimationFrame(animate);
+            };
+            animate();
+        });
+    </script>
+    
+    <script src="versiones_asistente.js"></script>
+</body>
+</html>
