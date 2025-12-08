@@ -5,26 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fluxi - Asistente</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600;800&family=JetBrains+Mono:wght==400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght==400;700&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <style>
-        /* Estilos generales del portafolio */
+        /* Estilos generales del portafolio (igual que antes) */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #020617; /* Color oscuro (Slate 950) */
+            background-color: #020617;
             color: #f8fafc;
             overflow-x: hidden;
             margin: 0;
         }
 
-        /* Clase para fuente tipo código */
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
         }
         
-        /* Animación flotante para el logo (Si se usa) */
         .floating {
             animation: float 6s ease-in-out infinite;
         }
@@ -35,26 +35,30 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Estilo para el Canvas (fondo de partículas) */
         #particle-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0; /* Detrás de todo */
-            pointer-events: none; /* Que no interfiera con los clicks */
+            z-index: 0;
+            pointer-events: none;
         }
 
-        /* Contenido debe estar encima del canvas */
         .content-wrapper {
             position: relative;
             z-index: 10;
         }
         
-        /* Estilo para el Logo con resplandor, adaptado a Tailwind */
         .logo-glow {
-            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6)); /* Resplandor cyan */
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
+        }
+
+        /* Ajustes de estilo para el contenido de Markdown usando prose-invert */
+        /* Aseguramos que los links dentro del markdown sigan el tema cyan */
+        #readme-container :where(a) {
+            color: #22d3ee; /* Color cyan-400 */
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -72,9 +76,9 @@
                     </span>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="https://fluxionics.github.io/" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Inicio</a>
-                            <a href="https://fluxionics.github.io/proyectos.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Proyectos</a>
-                            <a href="https://fluxionics.github.io/contacto.html" class="hover:bg-cyan-500 hover:text-black border border-cyan-500 text-cyan-400 px-4 py-2 rounded-md text-sm font-medium transition-all">Contactar</a>
+                            <a href="index.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Inicio</a>
+                            <a href="proyectos.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Proyectos</a>
+                            <a href="contacto.html" class="hover:bg-cyan-500 hover:text-black border border-cyan-500 text-cyan-400 px-4 py-2 rounded-md text-sm font-medium transition-all">Contactar</a>
                             <a href="#" class="bg-cyan-500 text-black px-4 py-2 rounded-md text-sm font-medium transition-all ml-4">Asistente</a>
                         </div>
                     </div>
@@ -93,37 +97,25 @@
                 </h1>
 
                 <p class="text-lg mb-8 text-slate-300">
-                    **Hola**, te presentamos nuestro **asistente**. Es la herramienta perfecta para ayudarte en tus tareas. ¡Descárgalo ahora y comienza a simplificar tu día!
+                    **Hola**, te presentamos nuestro **asistente**. ¡Descárgalo ahora y comienza a simplificar tu día!
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10 flex-wrap">
-    <a href="https://drive.google.com/uc?export=download&id=1Z4FNRKb2Ur5TKJWuc6qOXvpZ4W_sqmYM
-" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-cyan-500 text-black shadow-lg shadow-cyan-500/50 hover:bg-cyan-400 hover:shadow-cyan-400/70 animate-pulse" target="_blank">
-        <span class="mr-2 text-xl">⬇️</span> Descarga
-    </a>
+                    <a href="https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-cyan-500 text-black shadow-lg shadow-cyan-500/50 hover:bg-cyan-400 hover:shadow-cyan-400/70 animate-pulse" target="_blank">
+                        <span class="mr-2 text-xl">⬇️</span> Descarga
+                    </a>
 
-    <a href="versiones.html" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-slate-700 text-white border-2 border-slate-700 hover:bg-slate-600 hover:border-slate-600" target="_blank">
-        <span class="mr-2 text-xl">⏳</span> Versiones Anteriores
-    </a>
+                    <a href="versiones.html" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-slate-700 text-white border-2 border-slate-700 hover:bg-slate-600 hover:border-slate-600" target="_blank">
+                        <span class="mr-2 text-xl">⏳</span> Versiones Anteriores
+                    </a>
 
-    <a href="https://Fluxionics.github.io" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-transparent text-cyan-400 border-2 border-cyan-400 hover:bg-cyan-400 hover:text-black" target="_blank">
-        <span class="mr-2 text-xl">🌐</span> Web Fluxionics
-    </a>
-</div>
+                    <a href="https://Fluxionics.github.io" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-transparent text-cyan-400 border-2 border-cyan-400 hover:bg-cyan-400 hover:text-black" target="_blank">
+                        <span class="mr-2 text-xl">🌐</span> Web Fluxionics
+                    </a>
+                </div>
                 
-                <div class="p-6 rounded-xl text-left bg-slate-900/50 border border-cyan-500/30">
-                    <h2 class="text-2xl font-bold text-cyan-400 mb-4 border-b border-cyan-500/50 pb-2">Instrucciones:</h2>
-                    <ul class="space-y-3">
-                        <li class="flex items-start text-slate-300"><span class="flex-shrink-0 mr-3 text-cyan-400 font-bold">1️⃣</span> Descomprime El Archivo **.rar**</li>
-                        <li class="flex items-start text-slate-300"><span class="flex-shrink-0 mr-3 text-cyan-400 font-bold">2️⃣</span> Abre el archivo **.env** y pon tu **API Key**</li>
-                        <li class="flex items-start text-slate-300"><span class="flex-shrink-0 mr-3 text-cyan-400 font-bold">3️⃣</span> Y Ejecuta El Archivo **.exe**</li>
-                    </ul>
-
-                    <h3 class="text-xl font-bold text-cyan-400 mt-6 mb-3">¿Cómo Obtener tu API Key?</h3>
-                    <p class="text-slate-400">
-                        Abre la web <a href="https://aistudio.google.com/apikey" target="_blank" class="text-cyan-400 font-semibold hover:text-cyan-300 underline transition-colors">aquí</a>
-                        para obtener tu clave de acceso.
-                    </p>
+                <div id="readme-container" class="p-6 rounded-xl text-left bg-slate-900/50 border border-cyan-500/30 prose prose-invert max-w-none">
+                    <p class="text-slate-400 text-center">Cargando instrucciones desde README.md...</p>
                 </div>
 
                 <p class="mt-8 text-sm text-slate-500">
@@ -166,52 +158,35 @@
             const particles = [];
 
             class Particle {
-                constructor() {
-                    this.reset();
-                }
-
+                constructor() { this.reset(); }
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
                     this.size = Math.random() * 3 + 1;
                     this.speedX = Math.random() * 1 - 0.5;
-                    this.speedY = Math.random() * -1 - 0.2; // Suben como burbujas
+                    this.speedY = Math.random() * -1 - 0.2;
                     this.opacity = Math.random() * 0.5 + 0.1;
-                    this.color = Math.random() > 0.5 ? '103, 232, 249' : '59, 130, 246'; // Colores Cyan/Azul
+                    this.color = Math.random() > 0.5 ? '103, 232, 249' : '59, 130, 246';
                 }
-
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
-
-                    // Si sale por arriba, reaparece abajo
-                    if (this.y < 0) {
-                        this.y = canvas.height;
-                        this.x = Math.random() * canvas.width;
-                    }
-                    if (this.x > canvas.width || this.x < 0) {
-                        this.speedX = -this.speedX;
-                    }
+                    if (this.y < 0) { this.y = canvas.height; this.x = Math.random() * canvas.width; }
+                    if (this.x > canvas.width || this.x < 0) { this.speedX = -this.speedX; }
                 }
-
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
                     ctx.fill();
-                    // Sombra/Brillo
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = `rgba(${this.color}, 0.5)`;
-                    ctx.shadowBlur = 0; // Resetear sombra para no afectar performance
+                    ctx.shadowBlur = 0;
                 }
             }
 
-            // Crear partículas
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
 
-            // Función para dibujar líneas entre puntos cercanos
             const connectParticles = () => {
                 const maxDistance = 100;
                 for (let i = 0; i < particles.length; i++) {
@@ -232,7 +207,6 @@
                 }
             };
 
-            // Bucle de animación
             const animate = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
@@ -249,7 +223,42 @@
             animate();
         });
     </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const readmeContainer = document.getElementById('readme-container');
+
+            // 1. Fetch: Solicitar el archivo readme.md
+            fetch('readme.md')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo readme.md. Código: ' + response.status);
+                    }
+                    return response.text();
+                })
+                .then(markdownText => {
+                    // 2. Renderizar: Usar marked.js para convertir Markdown a HTML
+                    // La opción 'mangle' y 'headerIds' es por defecto y funciona bien.
+                    const htmlContent = marked.parse(markdownText);
+                    
+                    // 3. Insertar: Colocar el HTML en el contenedor
+                    readmeContainer.innerHTML = `
+                        <h2 class="text-3xl font-extrabold text-cyan-400 mb-4 border-b border-cyan-500/50 pb-2">Instrucciones del Asistente</h2>
+                        ${htmlContent}
+                    `;
+                    
+                    // Opcional: Ajustar los estilos de código o listas después de la inyección si es necesario
+                    // Por ejemplo, envolver el código de la API Key en un estilo específico si está en el README.
+                })
+                .catch(error => {
+                    console.error('Error al cargar README:', error);
+                    readmeContainer.innerHTML = `
+                        <h2 class="text-3xl font-extrabold text-red-500 mb-4">Error de Carga</h2>
+                        <p class="text-red-400">No se pudo encontrar o cargar el archivo <code>readme.md</code>. Asegúrate de que esté en la raíz del proyecto.</p>
+                        <p class="text-slate-400 mt-4">(${error.message})</p>
+                    `;
+                });
+        });
+    </script>
 </body>
 </html>
-
-
