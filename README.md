@@ -1,4 +1,4 @@
-# Fluxionics - Guillermo RSM
+# Fluxionics
 *La Pagina Oficial es [Fluxionics](https://fluxionics.github.io)*
 *Redes Sociales [Fluxionics Redes](https://fluxionics.github.io/contacto.html)*
 
