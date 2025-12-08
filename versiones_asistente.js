@@ -1,19 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const oldVersions = [
         {
-            titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
+            titulo: "Asistente Fluxi - Primera Edición (Errores Críticos)",
             version: "v1.0.0",
-            link: "https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL" 
-            descripcionCorta: "Cierres Comunes Sin Coreccion De Texto",
-            descripcionLarga: "Al Abrir La Configuracion Y Cerrarla Se Craseaba Error De generacion de texto Letras Comidas ApiKey Invalida " 
+            link: "https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL", 
+            descripcionCorta: "Cierres Comunes sin corrección de texto.",
+            descripcionLarga: "Al Abrir La Configuración Y Cerrarla Se Craseaba. Errores de generación de texto. Letras Comidas (Unicode). API Key Invalida no era detectada correctamente." 
+        },
+        // Puedes descomentar y llenar la siguiente versión cuando la necesites:
+        /*
+        {
+            titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
+            version: "v1.0.1",
+            link: "https://drive.google.com/uc?export=download&id=TU_LINK_DE_VERSION_1_0_1",
+            descripcionCorta: "Optimización de la conexión de red y corrección de un bug en el comando de desbloqueo.",
+            descripcionLarga: "Versión de mantenimiento enfocada en la estabilidad. Se corrigió un error que causaba cierres inesperados al intentar desbloquear URLs que contenían caracteres especiales. Se optimizó el tiempo de respuesta de la IA en conexiones lentas. *Cambios:* Parche de seguridad menor y mejora de la gestión de memoria." 
         }
-        //{
-            //titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
-            //version: "v1.0.1",
-           // link: "https://drive.google.com/uc?export=download&id=TU_LINK_DE_VERSION_1_0_1",
-          //  descripcionCorta: "Optimización de la conexión de red y corrección de un bug en el comando de desbloqueo.",
-        //    descripcionLarga: "Versión de mantenimiento enfocada en la estabilidad. Se corrigió un error que causaba cierres inesperados al intentar desbloquear URLs que contenían caracteres especiales. Se optimizó el tiempo de respuesta de la IA en conexiones lentas. *Cambios:* Parche de seguridad menor y mejora de la gestión de memoria." 
-       // },
+        */
     ];
 
     const container = document.getElementById('versions-container');
@@ -64,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Llenar el modal
                 modalTitle.textContent = selectedVersion.titulo;
                 modalVersion.textContent = `(${selectedVersion.version})`;
-                // Usar innerHTML para que el texto largo respete saltos de línea y formateo
+                // Usar innerHTML y replace para que el texto largo se muestre correctamente
                 modalBody.innerHTML = selectedVersion.descripcionLarga.replace(/\n/g, '<br>');
                 modalDownloadLink.href = selectedVersion.link;
                 
