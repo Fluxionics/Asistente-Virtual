@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const oldVersions = [
         {
-            titulo: "Asistente Fluxi - Versión de Lanzamiento Beta",
+            titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
             version: "v1.0.0",
             link: "https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL" 
             descripcionCorta: "Cierres Comunes Sin Coreccion De Texto",
-            descripcionLarga: "Al Abrir La Configuracion Y Cerrarla Se Craseaba Error De generacion de texto" 
+            descripcionLarga: "Al Abrir La Configuracion Y Cerrarla Se Craseaba Error De generacion de texto Letras Comidas ApiKey Invalida " 
         }
         //{
             //titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
