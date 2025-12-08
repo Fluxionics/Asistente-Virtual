@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Ups! URL Bloqueada por Fluxi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* Estilos generales del portafolio */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        /* Estilo para el Canvas (fondo de partículas) */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Contenido debe estar encima del canvas */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        /* Estilo para el Logo con resplandor (similar al asistente.html) */
+        .logo-glow {
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="content-wrapper min-h-screen flex flex-col">
+        
+        <nav class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <span class="font-mono text-xl font-bold text-cyan-400 tracking-tighter hover:text-white transition-colors cursor-pointer">
+                        &lt;GRSM /&gt;
+                    </span>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="index.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Inicio</a>
+                            <a href="proyectos.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Proyectos</a>
+                            <a href="contacto.html" class="hover:bg-cyan-500 hover:text-black border border-cyan-500 text-cyan-400 px-4 py-2 rounded-md text-sm font-medium transition-all">Contactar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="error-bloqueo" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex-grow flex justify-center items-start md:items-center">
+            
+            <div class="max-w-2xl w-full bg-slate-950/90 p-8 md:p-10 rounded-xl border-4 border-red-600/50 shadow-2xl shadow-red-900/50 text-center backdrop-blur-md animate-in fade-in duration-500">
+                
+                <img src="https://imgur.com/pxjxVqC.png" alt="Logo del Asistente" class="logo-glow h-24 w-auto mx-auto mb-6 floating filter drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">
+                
+                <h1 class="text-4xl font-extrabold text-red-400 mb-4 tracking-tight uppercase">
+                    URL BLOQUEADA 🛑
+                </h1>
+
+                <p class="text-xl mb-8 text-slate-300">
+                    **¡Ups!** Parece que **Fluxi** ha detectado esta URL como potencialmente **bloqueada** o **insegura** por tu configuración.
+                </p>
+
+                <div class="p-6 rounded-xl text-left bg-slate-900/50 border border-slate-700 mb-8">
+                    <p class="text-lg font-mono text-white mb-4">
+                        Si crees que esto es un error:
+                    </p>
+                    <h3 class="text-xl font-bold text-cyan-400 mb-3">
+                        Opción 1: Desbloqueo Rápido
+                    </h3>
+                    <p class="text-slate-400 mb-4">
+                        Desbloquea esta web utilizando el comando en tu asistente Fluxi:
+                    </p>
+                    <div class="bg-black p-3 rounded-lg border border-cyan-700/50 text-sm overflow-x-auto font-mono text-green-400">
+                        Fluxi desbloquea esta web (tu url)
+                    </div>
+                </div>
+
+                <p class="text-lg text-slate-400 mb-4">
+                    En caso de que el problema persista o creas que se trata de un error crítico, puedes contactarnos.
+                </p>
+                
+                <a href="contacto.html" class="inline-flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-cyan-600 text-black hover:bg-cyan-500 shadow-md shadow-cyan-900/50" target="_blank">
+                    Contactanos Aquí
+                </a>
+
+            </div>
+        </section>
+
+        <div class="mt-auto border-t border-slate-800 bg-black/80 backdrop-blur-md py-8">
+            <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center opacity-60">
+                <div class="font-mono text-sm text-slate-500 mb-4 md:mb-0">
+                    © 2024 Guillermo Rafael S.M.
+                </div>
+                <div class="flex space-x-6 items-center">
+                    <span class="text-slate-600 text-sm">Powered by</span>
+                    <span class="font-bold tracking-widest text-cyan-900 hover:text-cyan-700 transition-colors">FLUXIONICS</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let animationFrameId;
+
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const particleCount = 60;
+            const particles = [];
+
+            class Particle {
+                constructor() { this.reset(); }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * -1 - 0.2;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                    this.color = Math.random() > 0.5 ? '103, 232, 249' : '59, 130, 246';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.y < 0) { this.y = canvas.height; this.x = Math.random() * canvas.width; }
+                    if (this.x > canvas.width || this.x < 0) { this.speedX = -this.speedX; }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            const connectParticles = () => {
+                const maxDistance = 100;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < maxDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(103, 232, 249, ${0.1 - distance/maxDistance * 0.1})`;
+                            ctx.lineWidth = 1;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            };
+            const animate = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => { particle.update(); particle.draw(); });
+                connectParticles();
+                animationFrameId = requestAnimationFrame(animate);
+            };
+            animate();
+        });
+    </script>
+</body>
+</html>
