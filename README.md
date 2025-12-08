@@ -1,3 +1,7 @@
+# Fluxionics - Guillermo RSM
+*La Pagina Oficial es [Fluxionics](fluxionics.github.io)*
+*Redes Sociales [Fluxionics Redes](https://fluxionics.github.io/contacto.html)*
+
 # Documentación Oficial - Asistente Copiloto Fluxi
 
 **Versión Actual del Código:** **1.0.2 (Última Consolidada con Auto-Descripción y Control de Escritura)**
