@@ -8,9 +8,11 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
-        /* Estilos generales del portafolio (Copiados de index.html) */
+        /* Estilos generales del portafolio (Consistente con index.html) */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #020617; 
@@ -18,36 +20,22 @@
             overflow-x: hidden;
             margin: 0;
         }
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .floating { animation: float 6s ease-in-out infinite; }
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
         #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
         }
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-        }
-        /* Estilo para el Logo con resplandor */
-        .logo-glow {
-            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
-        }
-        /* Estilos para el contenido de Markdown (si decides cargarlo aquí) */
-        #readme-container :where(a) {
+        .content-wrapper { position: relative; z-index: 10; }
+        .logo-glow { filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6)); }
+
+        /* Estilos para el contenido de Markdown */
+        /* Aplicamos el estilo de color cyan a todos los links dentro del contenido Markdown */
+        .markdown-content :where(a) {
             color: #22d3ee; /* Color cyan-400 */
             text-decoration: underline;
         }
@@ -88,36 +76,37 @@
                 </h1>
 
                 <p class="text-lg mb-8 text-slate-300">
-                    **Hola**, te presentamos nuestro **asistente**. Es la herramienta perfecta para ayudarte en tus tareas. ¡Descárgalo ahora!
+                    **Hola**, te presentamos nuestro **asistente**. ¡Descárgalo ahora y comienza a simplificar tu día!
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10 flex-wrap">
                     <a href="https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-cyan-500 text-black shadow-lg shadow-cyan-500/50 hover:bg-cyan-400 hover:shadow-cyan-400/70 animate-pulse" target="_blank">
                         <span class="mr-2 text-xl">⬇️</span> Descarga
                     </a>
-                    
-                    <a href="https://Fluxionics.github.io" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-transparent text-cyan-400 border-2 border-cyan-400 hover:bg-cyan-400 hover:text-black" target="_blank">
-                        <span class="mr-2 text-xl">🌐</span> Web Fluxionics
+
+                    <a href="versiones.html" class="flex items-center justify-center px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 bg-slate-700 text-white border-2 border-slate-700 hover:bg-slate-600 hover:border-slate-600" target="_blank">
+                        <span class="mr-2 text-xl">⏳</span> Versiones Anteriores
                     </a>
                 </div>
                 
-                <div id="documentacion-section" class="p-6 rounded-xl text-left bg-slate-900/50 border border-cyan-500/30">
+                <div id="tab-section" class="p-6 rounded-xl text-left bg-slate-900/50 border border-cyan-500/30">
                     
-                    <h2 class="text-2xl font-bold text-cyan-400 mb-1">Documentación</h2>
-                    <p class="text-sm text-slate-500 italic mb-4 border-b border-slate-700/50 pb-2">Última actualización: v2.0</p>
-                    
-                    <h3 class="text-xl font-semibold text-white mb-2">Pasos Rápidos:</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start text-slate-300"><span class="flex-shrink-0 mr-3 text-cyan-400 font-bold">1️⃣</span> Descomprime El Archivo **.rar**</li>
-                        <li class="flex items-start text-slate-300"><span class="flex-shrink-0 mr-3 text-cyan-400 font-bold">2️⃣</span> Abre el archivo **.env** y pon tu **API Key**</li>
-                        <li class="flex items-start text-slate-300"><span class="flex-shrink-0 mr-3 text-cyan-400 font-bold">3️⃣</span> Y Ejecuta El Archivo **.exe**</li>
-                    </ul>
+                    <div class="flex border-b border-slate-700 mb-4">
+                        <button id="tab-doc" data-tab="readme" class="tab-button py-2 px-4 text-sm font-semibold border-b-2 border-cyan-400 text-cyan-400 transition-colors">
+                            Documentación
+                        </button>
+                        <button id="tab-pol" data-tab="politicas" class="tab-button py-2 px-4 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-colors">
+                            Políticas
+                        </button>
+                    </div>
 
-                    <h3 class="text-xl font-bold text-cyan-400 mt-6 mb-3">¿Cómo Obtener tu API Key?</h3>
-                    <p class="text-slate-400">
-                        Abre la web <a href="https://aistudio.google.com/apikey" target="_blank" class="text-cyan-400 font-semibold hover:text-cyan-300 underline transition-colors">aquí</a>
-                        para obtener tu clave de acceso.
-                    </p>
+                    <div id="readme-content" class="tab-content markdown-content prose prose-invert max-w-none">
+                        <p class="text-slate-400 text-center">Cargando README.md...</p>
+                    </div>
+
+                    <div id="politicas-content" class="tab-content markdown-content prose prose-invert max-w-none hidden">
+                        <p class="text-slate-400 text-center">Cargando SECURITY.md...</p>
+                    </div>
                 </div>
 
                 <p class="mt-8 text-sm text-slate-500">
@@ -215,6 +204,80 @@
             };
 
             animate();
+        });
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            // Función para cargar y renderizar el archivo Markdown
+            const loadMarkdown = (filename, elementId) => {
+                const container = document.getElementById(elementId);
+                fetch(filename)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error al cargar el archivo ${filename}. Código: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(markdownText => {
+                        // Usar marked.js para convertir Markdown a HTML
+                        const htmlContent = marked.parse(markdownText);
+                        container.innerHTML = htmlContent;
+                    })
+                    .catch(error => {
+                        console.error('Error de carga:', error);
+                        container.innerHTML = `
+                            <div class="p-4 bg-red-900/50 rounded-lg text-red-300">
+                                <h3 class="text-xl font-bold mb-2">Error: No se pudo cargar ${filename}</h3>
+                                <p>Asegúrate de que el archivo esté en la carpeta correcta. (${error.message})</p>
+                            </div>
+                        `;
+                    });
+            };
+
+            // Función para cambiar de pestaña
+            const showTab = (tabName) => {
+                contents.forEach(content => {
+                    // Ocultar todos los contenidos
+                    content.classList.add('hidden');
+                });
+
+                tabs.forEach(tab => {
+                    // Restablecer estilos de botón
+                    tab.classList.remove('border-cyan-400', 'text-cyan-400');
+                    tab.classList.add('border-transparent', 'text-slate-400', 'hover:text-white');
+                });
+
+                // Mostrar el contenido seleccionado
+                const activeContent = document.getElementById(tabName + '-content');
+                if (activeContent) {
+                    activeContent.classList.remove('hidden');
+                }
+
+                // Aplicar estilo al botón activo
+                const activeButton = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('border-cyan-400', 'text-cyan-400');
+                    activeButton.classList.remove('border-transparent', 'text-slate-400', 'hover:text-white');
+                }
+            };
+
+            // Asignar eventos a los botones de pestaña
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    showTab(tab.getAttribute('data-tab'));
+                });
+            });
+
+            // 1. Cargar el contenido de los dos archivos al inicio
+            loadMarkdown('README.md', 'readme-content');
+            loadMarkdown('SECURITY.md', 'politicas-content');
+
+            // 2. Mostrar la primera pestaña por defecto
+            showTab('readme');
         });
     </script>
 </body>
