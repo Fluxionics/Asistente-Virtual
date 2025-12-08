@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fluxionics - Versiones Anteriores</title>
+    <title>Fluxionics - Versiones Anteriores </title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -60,10 +60,10 @@
                     </span>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="fluxionics.github.io" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Inicio</a>
-                            <a href="https://fluxionics.github.io/proyectos.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Proyectos</a>
-                            <a href="https://fluxionics.github.io/contacto.html" class="hover:bg-cyan-500 hover:text-black border border-cyan-500 text-cyan-400 px-4 py-2 rounded-md text-sm font-medium transition-all">Contactar</a>
-                            <a href="https://fluxionics.github.io/Asistente-Virtual/" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Asistente</a>
+                            <a href="index.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Inicio</a>
+                            <a href="proyectos.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Proyectos</a>
+                            <a href="contacto.html" class="hover:bg-cyan-500 hover:text-black border border-cyan-500 text-cyan-400 px-4 py-2 rounded-md text-sm font-medium transition-all">Contactar</a>
+                            <a href="asistente.html" class="hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white">Asistente</a>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,32 @@
         </div>
 
     </div>
+    
+    <div id="version-modal" class="hidden fixed inset-0 z-[100] bg-black bg-opacity-70 justify-center items-center p-4 transition-opacity duration-300">
+        <div class="bg-slate-900/95 p-6 rounded-xl border border-slate-700 max-w-lg w-full transform transition-transform duration-300 scale-95 md:scale-100 shadow-2xl shadow-cyan-900/50">
+            
+            <div class="flex justify-between items-center border-b border-cyan-500/50 pb-3 mb-4">
+                <h3 class="text-2xl font-bold text-white">
+                    <span id="modal-title">Título de la Versión</span>
+                    <span id="modal-version" class="text-cyan-400 font-mono text-base ml-2"></span>
+                </h3>
+                <button id="close-modal" class="text-slate-400 hover:text-red-500 text-3xl leading-none transition-colors">&times;</button>
+            </div>
 
+            <div class="mb-6 max-h-96 overflow-y-auto pr-2">
+                <p id="modal-body" class="text-slate-300 whitespace-pre-line leading-relaxed"></p>
+            </div>
+            
+            <div class="text-center">
+                <a id="modal-download-link" href="#" target="_blank" class="inline-flex items-center px-6 py-2 rounded-full font-bold uppercase transition-all duration-300 bg-cyan-600 text-black hover:bg-cyan-500 shadow-md">
+                    Descargar Versión
+                    <svg class="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('particle-canvas');
@@ -114,7 +139,6 @@
             const particles = [];
 
             class Particle {
-                // ... (código de Particle, update, draw, connectParticles y animate) ...
                 constructor() { this.reset(); }
                 reset() {
                     this.x = Math.random() * canvas.width;
@@ -128,13 +152,8 @@
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
-                    if (this.y < 0) {
-                        this.y = canvas.height;
-                        this.x = Math.random() * canvas.width;
-                    }
-                    if (this.x > canvas.width || this.x < 0) {
-                        this.speedX = -this.speedX;
-                    }
+                    if (this.y < 0) { this.y = canvas.height; this.x = Math.random() * canvas.width; }
+                    if (this.x > canvas.width || this.x < 0) { this.speedX = -this.speedX; }
                 }
                 draw() {
                     ctx.beginPath();
@@ -155,7 +174,6 @@
                         const dx = particles[i].x - particles[j].x;
                         const dy = particles[i].y - particles[j].y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-
                         if (distance < maxDistance) {
                             ctx.beginPath();
                             ctx.strokeStyle = `rgba(103, 232, 249, ${0.1 - distance/maxDistance * 0.1})`;
@@ -169,10 +187,7 @@
             };
             const animate = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(particle => {
-                    particle.update();
-                    particle.draw();
-                });
+                particles.forEach(particle => { particle.update(); particle.draw(); });
                 connectParticles();
                 animationFrameId = requestAnimationFrame(animate);
             };
