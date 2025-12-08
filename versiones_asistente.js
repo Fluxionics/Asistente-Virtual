@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
             descripcionCorta: "Cierres Comunes sin corrección de texto.",
             descripcionLarga: "Al Abrir La Configuración Y Cerrarla Se Craseaba. Errores de generación de texto. Letras Comidas (Unicode). API Key Invalida no era detectada correctamente." 
         },
-         Puedes descomentar y llenar la siguiente versión cuando la necesites:
         {
             titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
             version: "v1.0.1",
