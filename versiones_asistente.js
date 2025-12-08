@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
             version: "v1.0.1",
-            link:  "https//:drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL",
+            link:  "https://drive.google.com/uc?export=download&id=1Z4FNRKb2Ur5TKJWuc6qOXvpZ4W_sqmYM",
             descripcionCorta: "corrección de un bug en el comando de desbloqueo.",
             descripcionLarga: "Error De Claves, Nueva Funcion Ingconito, Configuraciones Nuevas Agregar Comandos Escritura." 
         }
