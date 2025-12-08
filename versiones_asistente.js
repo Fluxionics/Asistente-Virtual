@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const oldVersions = [
+       
         {
             titulo: "Asistente Fluxi - Primera Edición (Errores Críticos)",
             version: "v1.0.0",
@@ -7,16 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
             descripcionCorta: "Cierres Comunes sin corrección de texto.",
             descripcionLarga: "Al Abrir La Configuración Y Cerrarla Se Craseaba. Errores de generación de texto. Letras Comidas (Unicode). API Key Invalida no era detectada correctamente." 
         },
-        // Puedes descomentar y llenar la siguiente versión cuando la necesites:
-        /*
+         Puedes descomentar y llenar la siguiente versión cuando la necesites:
         {
             titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
             version: "v1.0.1",
-            link: "https://drive.google.com/uc?export=download&id=TU_LINK_DE_VERSION_1_0_1",
-            descripcionCorta: "Optimización de la conexión de red y corrección de un bug en el comando de desbloqueo.",
-            descripcionLarga: "Versión de mantenimiento enfocada en la estabilidad. Se corrigió un error que causaba cierres inesperados al intentar desbloquear URLs que contenían caracteres especiales. Se optimizó el tiempo de respuesta de la IA en conexiones lentas. *Cambios:* Parche de seguridad menor y mejora de la gestión de memoria." 
+            link: https: "drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL",
+            descripcionCorta: "corrección de un bug en el comando de desbloqueo.",
+            descripcionLarga: "Error De Claves, Nueva Funcion Ingconito, Configuraciones Nuevas Agregar Comandos Escritura." 
         }
-        */
     ];
 
     const container = document.getElementById('versions-container');
