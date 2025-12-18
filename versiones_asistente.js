@@ -2,19 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const oldVersions = [
        
         {
-            titulo: "Asistente Fluxi - Primera Edición (Errores Críticos)",
-            version: "v1.0.0",
-            link: "https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL", 
-            descripcionCorta: "Cierres Comunes sin corrección de texto.",
-            descripcionLarga: "Al Abrir La Configuración Y Cerrarla Se Craseaba. Errores de generación de texto. Letras Comidas (Unicode). API Key Invalida no era detectada correctamente." 
+            titulo: "Asistente Fluxi" ,
+            version: "v1.0.2",
+            link:  "https://drive.google.com/uc?export=download&id=1L_gDhNl9gqat8Xvfa-oofvq6piTOmBtS",
+            descripcionCorta: "Control de pc no simulaciom.",
+            descripcionLarga: "Escritura L x L Mala Areglo de comandos ya no simulados"
         },
-        {
+
+        { 
             titulo: "Asistente Fluxi - Corrección de Bugs Iniciales",
             version: "v1.0.1",
             link:  "https://drive.google.com/uc?export=download&id=1Z4FNRKb2Ur5TKJWuc6qOXvpZ4W_sqmYM",
             descripcionCorta: "corrección de un bug en el comando de desbloqueo.",
             descripcionLarga: "Error De Claves, Nueva Funcion Ingconito, Configuraciones Nuevas Agregar Comandos Escritura." 
+        },
+        
+        {
+            titulo: "Asistente Fluxi - Primera Edición (Errores Críticos)",
+            version: "v1.0.0",
+            link: "https://drive.google.com/uc?export=download&id=1EO0lZcSSGGOz2LJj-sSC9VDl_PZ4y8FL", 
+            descripcionCorta: "Cierres Comunes sin corrección de texto.",
+            descripcionLarga: "Al Abrir La Configuración Y Cerrarla Se Crasheaba. Errores de generación de texto. Letras Comidas (Unicode). API Key Invalida no era detectada correctamente." 
         }
+        
     ];
 
     const container = document.getElementById('versions-container');
