@@ -2,6 +2,59 @@
 *La Pagina Oficial es [Fluxionics](https://fluxionics.github.io)*
 *Redes Sociales [Fluxionics Redes](https://fluxionics.github.io/contacto.html)*
 
+# Sobre la version
+🌟 Funciones Nuevas (Control Real)
+Anti-Grabación de Nivel Kernel:
+
+Antes: El "Modo Incógnito" solo cambiaba colores o ponía la ventana algo transparente.
+
+Ahora: Utiliza SetWindowDisplayAffinity. Esto le dice a Windows que la ventana de Fluxi es información protegida. Si intentas grabar con OBS, hacer stream en Discord o tomar una captura de pantalla (Win + Shift + S), Fluxi aparecerá como un cuadro negro sólido. Tú la ves, pero los demás no.
+
+Brillo de Hardware Directo:
+
+Antes: No podía cambiar el brillo o solo lo simulaba.
+
+Ahora: Se comunica con el monitor mediante DDC/CI. Si le pides "Brillo al 10%", la luz de tu pantalla bajará físicamente.
+
+Control de Audio Maestro:
+
+Antes: Podía tener errores al intentar acceder al volumen.
+
+Ahora: Usa la API de Windows (pycaw) para controlar el volumen general del sistema con precisión de 0 a 100.
+
+Movimiento de Mouse Físico:
+
+Ahora: Incluimos una función para mover el cursor a coordenadas reales o puntos clave (como el centro de la pantalla) con animaciones suaves (pyautogui).
+
+Sistema de Autorización:
+
+Nuevo: Por seguridad, antes de mover el mouse o cambiar ajustes críticos de hardware, Fluxi te mostrará un cuadro de confirmación. Nada sucede sin tu "Sí".
+
+🐛 Errores y Bugs Arreglados
+Error de Hilo (NameError: is_generative):
+
+Bug: En versiones anteriores, al intentar usar la IA, el programa a veces se cerraba o lanzaba un error porque la variable is_generative no estaba definida en el lugar correcto del código.
+
+Solución: Se definió y estructuró correctamente dentro del hilo de procesamiento para que la IA siempre sepa qué modo usar.
+
+Congelamiento de Ventana (GUI Freeze):
+
+Bug: Al pedirle algo complejo a la IA, la ventana se quedaba "trabada" y no podías moverla hasta que la IA terminara de responder.
+
+Solución: Implementamos un sistema de hilos (threading) más robusto. Ahora la interfaz siempre responde mientras la IA trabaja "detrás de escena".
+
+Error de Inicialización de Audio:
+
+Bug: Si intentabas cambiar el volumen varias veces, el sistema de audio de Windows podía dar un error de "COM" (comunicación).
+
+Solución: Añadimos comtypes.CoInitialize() y Uninitialize(). Esto asegura que la conexión con los altavoces se abra y cierre correctamente cada vez.
+
+Persistencia de Datos:
+
+Bug: A veces los sitios bloqueados o recordatorios se borraban al cerrar.
+
+Solución: Se mejoraron los bloques try-except al cargar los archivos .json para evitar que un archivo corrupto rompa todo el asistente.
+
 # Documentación Oficial - Asistente Copiloto Fluxi
 
 **Versión Actual del Código:** **1.0.2 (Última Consolidada con Auto-Descripción y Control de Escritura)**
