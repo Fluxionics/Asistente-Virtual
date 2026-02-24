@@ -1,0 +1,8 @@
+{
+    "theme": "System",
+    "response_mode": "Ambos",
+    "incognito_mode": true,
+    "write_mode": "Escribir Letra por Letra",
+    "command_mode": "Ambos",
+    "always_on_top": true
+}
